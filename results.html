@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simplex Results</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 20px;
+            background-color: #f5f5f5;
+        }
+    
+        h1 {
+            font-size: 24px;
+            margin-bottom: 20px;
+        }
+    
+        pre {
+            white-space: pre-wrap; /* This will make sure the text wraps */
+            word-wrap: break-word; /* Extra precaution */
+            padding: 10px;
+            background-color: #ffffff;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+    
+        button {
+            margin-top: 20px;
+            padding: 10px 20px;
+            border: none;
+            background-color: #007BFF;
+            color: white;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+    
+        button:hover {
+            background-color: #0056b3;
+        }
+    </style>
+
+</head>
+
+<body>
+    <h1 id="title">Results of simplex on ...</h1>
+    <pre id="results"></pre>
+    <button onclick="goBack()">Back</button>
+
+    <script>
+        function goBack() {
+            window.location.href = 'simplex.html';
+        }
+
+        window.onload = function() {
+            const logs = sessionStorage.getItem("simplexResults");
+            const filename = sessionStorage.getItem("filename");
+            
+            document.getElementById("title").innerText = `Results of simplex on ${filename}:`;
+            
+            const outputDiv = document.getElementById("results");
+            logs.split("\n").forEach(log => {
+                let p = document.createElement("p");
+                
+                // Check if the line starts with "[EMPHASIS]"
+                if (log.startsWith("[EMPHASIS]")) {
+                    p.style.fontWeight = "bold";
+                    p.style.fontSize = "20px";
+                    p.style.backgroundColor = "lightyellow";
+                    p.innerText = log.replace("[EMPHASIS]", "");
+                } else {
+                    p.innerText = log;
+                }
+
+                outputDiv.appendChild(p);
+            });
+        }
+
+    </script>
+</body>
+
+</html>

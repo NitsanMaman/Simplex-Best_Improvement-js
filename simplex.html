@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Simplex Program</title>
+        <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600&display=swap" rel="stylesheet">
+        
+        <style>
+            body {
+                font-family: 'Open Sans', sans-serif;
+                background-color: #f6f7fb;
+                color: #333;
+                text-align: center;
+                margin: 0;
+                padding: 0;
+                line-height: 1.6;
+            }
+    
+            h1 {
+                font-weight: 600;
+                margin-top: 50px;
+            }
+    
+            h2 {
+                margin-top: 30px;
+            }
+    
+            #fileInput {
+                margin: 20px 0;
+                display: none; /* Hide the default input */
+            }
+    
+            label[for="fileInput"],
+            #runButton {
+                padding: 10px 25px;
+                border: none;
+                border-radius: 5px;
+                color: white;
+                cursor: pointer;
+                transition: background-color 0.3s;
+                width: 150px;
+                display: block;
+                margin: 10px auto;
+            }
+    
+            label[for="fileInput"] {
+                background-color: #3498db;
+            }
+    
+            label[for="fileInput"]:hover {
+                background-color: #2980b9;
+            }
+    
+            #runButton {
+                background-color: #2ecc71;
+                scale: 1.3;
+            }
+    
+            #runButton:hover {
+                background-color: #27ae60;
+            }
+    
+            #fileName {
+                margin-top: 10px;
+            }
+        </style>
+    </head>
+    
+    <body>
+        <h1>Simplex Program:</h1>
+        <h2>Enter LP file to upload:</h2>
+    
+        <label for="fileInput">Choose File</label>
+        <input type="file" id="fileInput" onchange="displayFileName()">
+        <span id="fileName">&nbsp;</span>
+        <button id="runButton">Run</button>
+        <div id="consoleBox" style="width: 80%; height: 200px; border: 1px solid #000; padding: 10px; overflow-y: auto; margin: 20px auto; background-color: #f5f5f5; font-family: monospace;">
+            Console override activated.
+        </div>
+        
+        <div id="loadingSpinner" style="display:none; position:fixed; top:50%; left:50%; transform:translate(-50%, -50%);">
+            <img src="./loading.gif">
+        </div>
+
+        <script>
+            function displayFileName() {
+            const fileInput = document.getElementById('fileInput');
+            const fileNameDisplay = document.getElementById('fileName');
+            fileNameDisplay.textContent = fileInput.files.length > 0 ? `Loaded: ${fileInput.files[0].name}` : '\xa0';
+            }
+
+            const originalLog = console.log;
+            // console.log = function(...args) {
+            //     originalLog.apply(console, args);
+                
+            //     // Push the log to our outputs
+            //     consoleOutputs.push(args.join(' '));
+                
+            //     // Save the updated logs to sessionStorage
+            //     sessionStorage.setItem("simplexResults", consoleOutputs.join("\n"));
+
+            //     // Dispatch a custom event to inform listeners that logs were updated
+            //     const event = new Event('logsUpdated');
+            //     window.dispatchEvent(event);
+            // }
+
+            window.onload = function() {
+                var fileInput = document.getElementById("fileInput");
+                if (fileInput) {
+                    fileInput.value = "";
+                }
+            };
+            
+        </script>
+    <script src="read_file.js"></script> 
+    <script src="simplex_main.js"></script>
+    <script src="simplex_algorithm.js"></script>  
+    <script src="bublesort_d.js"></script>
+    <script src="bublesort.js"></script>
+    <script src="set_d.js"></script>
+    <script src="compute_cb_cd.js"></script>
+    <script src="compute_Initial_cb_Initial_cd.js"></script>
+    <script src="copy_matrix.js"></script>
+    <script src="copy_submatrix.js"></script>
+    <script src="copy_to_initial_matrix.js"></script>
+    <script src="copy_vector.js"></script>
+    <script src="erase_epsilons_matrix.js"></script>
+    <script src="erase_epsilons_vector.js"></script>
+    <script src="find_all_negative_rds.js"></script>
+    <script src="find_exiting_id.js"></script>
+    <script src="find_Initial_exiting_id.js"></script>
+    <script src="find_Initial_most_negative.js"></script>
+    <script src="find_min_value.js"></script>
+    <script src="find_most_negative.js"></script>
+    <script src="Initial_set_d.js"></script>
+    <script src="Initial_simplex_algorithm.js"></script>
+    <script src="Initial_swap_colums.js"></script>
+    <script src="invert_matrix.js"></script>
+    <script src="matrix_mult.js"></script>
+    <script src="matrix_vector_mult.js"></script>
+    <script src="print_initial_solution.js"></script>
+    <script src="print_no_solution.js"></script>
+    <script src="print_original_system.js"></script>
+    <script src="print_result.js"></script>
+    <script src="print_simplex_params.js"></script>
+    <script src="print_solution.js"></script>
+    <script src="set_A_aux.js"></script>
+    <script src="set_Initial_A_aux.js"></script>
+    <script src="stage2_swap_colums.js"></script>
+    <script src="swap_colums.js"></script>
+    <script src="swap_rows.js"></script>
+    <script src="vector_matrix_mult.js"></script>
+    <script src="vector_subtract.js"></script>
+    
+</body>
+</html>
